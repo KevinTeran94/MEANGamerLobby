@@ -1,0 +1,61 @@
+<div class="container">
+    <form> 
+        <div class="form-group">
+          <input type="text" class="form-control" name ="searchText" placeholder="search by name" [(ngModel)]="searchText" >
+        </div>
+    </form> 
+    <!-- No data message -->
+    <p *ngIf="Game.length <= 0" class="no-data text-center">No Games</p>
+  
+    <!-- game table if something typed into search -->
+    <table class="table table-bordered" *ngIf="Game.length > 0 && searchText!=null">
+      <thead class="table-success">
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Platform</th>
+          <th scope="col">Genre</th>
+          <th scope="col">Rating</th>
+          <th scope="col">Publisher</th>
+          <th scope="col">Release</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let game of Game | gameFilter: searchText; let i = index">
+          <th scope="row">{{game.title}}</th>
+          <td>{{game.platform}}</td>
+          <td>{{game.genre}}</td>
+          <td>{{game.rating}}</td>
+          <td>{{game.publisher}}</td>
+          <td>{{game.release}}</td>
+          <td>{{game.status}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- game table if nothing typed in search -->
+    <table class="table table-bordered" *ngIf="Game.length > 0 && searchText==null">
+        <thead class="table-success">
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Platform</th>
+            <th scope="col">Genre</th>
+            <th scope="col">Rating</th>
+            <th scope="col">Publisher</th>
+            <th scope="col">Release</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let game of Game; let i = index">
+            <th scope="row">{{game.title}}</th>
+            <td>{{game.platform}}</td>
+            <td>{{game.genre}}</td>
+            <td>{{game.rating}}</td>
+            <td>{{game.publisher}}</td>
+            <td>{{game.release}}</td>
+            <td>{{game.status}}</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+

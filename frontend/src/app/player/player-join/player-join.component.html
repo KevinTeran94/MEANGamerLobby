@@ -1,0 +1,87 @@
+<div class="row justify-content-center">
+    <div class="col-md-4">
+      <div class="card card-outline-secondary">
+        <div class="card-header">
+          <h3 class="mb-0">Join game</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="playerJoinForm" (ngSubmit)="onSubmit()">
+ 
+            <div class="form-group">
+                <label for="inputName">Player name</label>
+                <input class="form-control" type="text" formControlName="player_name" disabled>
+                <!-- error -->
+                <div class="alert alert-danger" *ngIf="submitted && myForm.player_name.errors?.required">
+                  Enter Player name.
+                </div>
+              </div>
+    
+              <div class="form-group">
+                <label for="inputRank">Rank</label>
+                <select class="custom-select form-control" (change)="updateRank($event.target.value)"
+                  formControlName="rank" disabled>
+                  <option value="">Choose...</option>
+                  <option *ngFor="let rank of playerRank" value="{{rank}}">{{rank}}
+                  </option>
+                </select>
+                <!-- error -->
+                <div class="alert alert-danger" *ngIf="submitted && myForm.rank.errors?.required">
+                  Choose rank.
+                </div>
+              </div>
+      
+              <div class="form-group">
+                <label for="inputScore">Score</label>
+                <input class="form-control" type="number" formControlName="score" disabled>
+                <!-- error -->
+                <div class="alert alert-danger" *ngIf="submitted && myForm.score.errors?.required">
+                  Enter score.
+                </div>
+              </div>
+    
+              <div class="form-group">
+                <label for="inputTime">Time Played</label>
+                <input class="form-control" type="text" formControlName="time" disabled>
+                <!-- error -->
+                <div class="alert alert-danger" *ngIf="submitted && myForm.time.errors?.required">
+                  Enter time played.
+                </div>
+              </div>
+    
+              <div class="form-group">
+                <label for="inputFavoriteGame">Select game to join.</label>
+                <select class="custom-select form-control" (change)="updateFavoriteGame($event.target.value)"
+                  formControlName="favorite_game" >
+                  <option value="">Choose...</option>
+                  <option *ngFor="let fav of playerFavoriteGame" value="{{fav}}">{{fav}}
+                  </option>
+                </select>
+                <!-- error -->
+                <div class="alert alert-danger" *ngIf="submitted && myForm.favorite_game.errors?.required">
+                  Choose Game to join.
+                </div>
+              </div>
+    
+              <!-- <div class="form-group">
+                <label for="inputStatus">Status</label>
+                <select class="custom-select form-control" (change)="updateStatus($event.target.value)"
+                  formControlName="status">
+                  <option selected="selected" value="{{playerStatus[1]}}">Unavailable</option>
+                </select>
+                <div class="alert alert-danger" *ngIf="submitted && myForm.status.errors?.required">
+                  Choose Status.
+                </div>
+              </div> -->
+ 
+            <div class="form-group">
+              <button class="btn btn-success btn-lg btn-block" type="submit">Join game</button>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-success btn-lg btn-block" (click)="cancel()">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div><!-- form  -->
+    </div>
+  </div>

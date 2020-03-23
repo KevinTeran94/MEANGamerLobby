@@ -1,0 +1,68 @@
+<div class="container">
+    <form> 
+        <div class="form-group">
+          <input type="text" class="form-control" name ="searchText" placeholder="search by name" [(ngModel)]="searchText" >
+        </div>
+    </form> 
+    <!-- No data message -->
+    <p *ngIf="Player.length <= 0" class="no-data text-center">No Players</p>
+  
+    <!-- player table if something typed in search -->
+    <table class="table table-bordered" *ngIf="Player.length > 0 && searchText!=null">
+      <thead class="table-success">
+        <tr>
+          <th scope="col">Player Name</th>
+          <th scope="col">Rank</th>
+          <th scope="col">Score</th>
+          <th scope="col">Time Played</th>
+          <th scope="col">Games Played</th>
+          <th scope="col">Status</th>
+          <th scope="col center">Join game</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let player of Player | filter: searchText; let i = index">
+          <th scope="row">{{player.player_name}}</th>
+          <td>{{player.rank}}</td>
+          <td>{{player.score}}</td>
+          <td>{{player.time}}</td>
+          <td>{{player.favorite_game}}</td>
+          <td>{{player.status}}</td>
+          <td class="text-center edit-block">
+            <span class="edit" [routerLink]="['/player-join/', player._id]">
+              <button type="button" *ngIf="player.status == 'Available'" class="btn btn-success btn-sm">Join game</button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Player table if nothing typed in search -->
+    <table class="table table-bordered" *ngIf="Player.length > 0 && searchText==null">
+        <thead class="table-success">
+          <tr>
+            <th scope="col">Player Name</th>
+            <th scope="col">Rank</th>
+            <th scope="col">Score</th>
+            <th scope="col">Time Played</th>
+            <th scope="col">Games Played</th>
+            <th scope="col">Status</th>
+            <th scope="col center">Join game</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let player of Player; let i = index">
+            <th scope="row">{{player.player_name}}</th>
+            <td>{{player.rank}}</td>
+            <td>{{player.score}}</td>
+            <td>{{player.time}}</td>
+            <td>{{player.favorite_game}}</td>
+            <td>{{player.status}}</td>
+            <td class="text-center edit-block">
+              <span class="edit" [routerLink]="['/player-join/', player._id]">
+                <button type="button" *ngIf="player.status == 'Available'" class="btn btn-success btn-sm">Join game</button>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>

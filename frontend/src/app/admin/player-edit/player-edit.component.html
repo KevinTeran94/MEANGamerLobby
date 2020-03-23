@@ -1,0 +1,87 @@
+<div class="row justify-content-center">
+    <div class="col-md-4">
+      <!-- form card register -->
+      <div class="card card-outline-secondary">
+        <div class="card-header">
+          <h3 class="mb-0">Edit Player</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="playerEditForm" (ngSubmit)="onSubmit()">
+ 
+            <div class="form-group">
+                <label for="inputName">Player name</label>
+                <input class="form-control" type="text" formControlName="player_name" >
+                <!-- error -->
+                <div class="alert alert-danger" *ngIf="submitted && myForm.player_name.errors?.required">
+                  Enter Player name.
+                </div>
+              </div>
+    
+              <div class="form-group">
+                <label for="inputRank">Rank</label>
+                <select class="custom-select form-control" (change)="updateRank($event.target.value)"
+                  formControlName="rank">
+                  <option value="">Choose...</option>
+                  <option *ngFor="let rank of playerRank" value="{{rank}}">{{rank}}
+                  </option>
+                </select>
+                <!-- error -->
+                <div class="alert alert-danger" *ngIf="submitted && myForm.rank.errors?.required">
+                  Choose rank.
+                </div>
+              </div>
+      
+              <div class="form-group">
+                <label for="inputScore">Score</label>
+                <input class="form-control" type="number" formControlName="score">
+                <!-- error -->
+                <div class="alert alert-danger" *ngIf="submitted && myForm.score.errors?.required">
+                  Enter score.
+                </div>
+              </div>
+    
+              <div class="form-group">
+                <label for="inputTime">Time Played</label>
+                <input class="form-control" type="text" formControlName="time">
+                <!-- error -->
+                <div class="alert alert-danger" *ngIf="submitted && myForm.time.errors?.required">
+                  Enter time played.
+                </div>
+              </div>
+    
+              <div class="form-group">
+                <label for="inputFavoriteGame">Favorite Game</label>
+                <select class="custom-select form-control" (change)="updateFavoriteGame($event.target.value)"
+                  formControlName="favorite_game">
+                  <option value="">Choose...</option>
+                  <option *ngFor="let fav of playerFavoriteGame" value="{{fav}}">{{fav}}
+                  </option>
+                </select>
+                <!-- error -->
+                <div class="alert alert-danger" *ngIf="submitted && myForm.favorite_game.errors?.required">
+                  Choose Favorite Game.
+                </div>
+              </div>
+    
+              <div class="form-group">
+                <label for="inputStatus">Status</label>
+                <select class="custom-select form-control" (change)="updateStatus($event.target.value)"
+                  formControlName="status">
+                  <option value="">Choose...</option>
+                  <option *ngFor="let stat of playerStatus" value="{{stat}}">{{stat}}
+                  </option>
+                </select>
+                <!-- error -->
+                <div class="alert alert-danger" *ngIf="submitted && myForm.status.errors?.required">
+                  Choose Status.
+                </div>
+              </div>
+ 
+            <div class="form-group">
+              <button class="btn btn-success btn-lg btn-block" type="submit">Update</button>
+            </div>
+          </form>
+        </div>
+      </div><!-- form  -->
+    </div>
+  </div>
